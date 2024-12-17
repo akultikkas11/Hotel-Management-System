@@ -1,0 +1,51 @@
+CREATE TABLE Customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(20),  
+    middle_name VARCHAR(20),
+    last_name VARCHAR(20),
+    city VARCHAR(20),
+    state VARCHAR(20),
+    pincode VARCHAR(10)
+);
+
+CREATE TABLE hotel(
+hotel_id INT PRIMARY KEY,
+hotel_name VARCHAR(20),
+hotel_pincode INT
+);
+
+CREATE TABLE Phone_Numbers (
+    customer_id INT,
+    number1 BIGINT,
+    number2 BIGINT,
+    PRIMARY KEY(customer_id),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE customers_email (
+customer_id INT,
+email VARCHAR(20) PRIMARY KEY,		     
+password VARCHAR(20),
+FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
+);     
+
+CREATE TABLE Rooms (
+    customer_id INT,
+    members INT,
+    room_type VARCHAR(20),
+    FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
+);
+
+CREATE TABLE Payment (
+    customer_id INT,
+    payable_amount INT,
+    payment_mode VARCHAR(10)
+);
+
+CREATE TABLE Reservation (
+    customer_id INT,
+    reservation_date DATE,
+    check_in DATE,
+    days_stay INT,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
